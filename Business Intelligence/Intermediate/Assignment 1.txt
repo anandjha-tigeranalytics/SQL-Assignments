@@ -1,0 +1,619 @@
+==============================================================================
+				VIEWS
+==============================================================================
+
+Question 1:
+You are developing a sales dashboard for a retail company and need to create a view that aggregates sales data for reporting purposes.
+
+Table: sales
+
+| order_id | customer_id | product_id | sale_date   | quantity | unit_price |
+|----------|-------------|------------|-------------|----------|------------|
+| 1        | 101         | 1          | 2023-08-01  | 5        | 20.00      |
+| 2        | 102         | 2          | 2023-08-02  | 3        | 15.00      |
+| 3        | 103         | 1          | 2023-08-02  | 2        | 22.50      |
+| 4        | 101         | 3          | 2023-08-03  | 1        | 50.00      |
+| 5        | 102         | 1          | 2023-08-04  | 4        | 18.00      |
+| ...      | ...         | ...        | ...         | ...      | ...        |
+
+Create a view named sales_summary that provides a summary of total sales amount for each product, ordered by product ID.
+
+
+Question 2:
+You're managing a database for a social media platform. Create a view named ActiveUsers that displays information about users who have posted at least 10 times in the last 30 days. The view should include the user's username and the number of posts made.
+
+Users Table:
+
+| UserID | Username    |
+|--------|-------------|
+| 1      | alice       |
+| 2      | bob         |
+| 3      | carol       |
+| 4      | david       |
+
+Posts Table:
+
+| PostID | UserID | PostDate    |
+|--------|--------|-------------|
+| 1      | 1      | 2023-07-15  |
+| 2      | 2      | 2023-08-01  |
+| 3      | 1      | 2023-08-02  |
+| 4      | 3      | 2023-08-05  |
+
+
+Question 3:
+You're working with a database for an online course platform. Create a view named CourseProgress that displays information about enrolled students and their course progress. The view should include the student's name, course name, and the percentage of course completion. Assume that each course has a total of 10 lessons.
+
+Students Table:
+
+| StudentID | StudentName |
+|-----------|-------------|
+| 1         | Alice       |
+| 2         | Bob         |
+| 3         | Carol       |
+| 4         | David       |
+
+Courses Table:
+
+| CourseID | CourseName |
+|----------|------------|
+| 101      | Math       |
+| 102      | Science    |
+| 103      | History    |
+| 104      | Literature |
+
+Enrollments Table:
+
+| EnrollmentID | StudentID | CourseID |
+|--------------|-----------|----------|
+| 1            | 1         | 101      |
+| 2            | 1         | 102      |
+| 3            | 2         | 102      |
+| 4            | 2         | 103      |
+
+LessonsCompleted Table:
+
+| LessonID | StudentID | CourseID | LessonNumber |
+|----------|-----------|----------|--------------|
+| 1        | 1         | 101      | 1            |
+| 2        | 1         | 102      | 2            |
+| 3        | 2         | 102      | 3            |
+| 4        | 2         | 103      | 5            |
+
+
+==============================================================================
+				MVIEWS
+==============================================================================
+
+Question 1:
+You are analyzing stock price data and need to create a materialized view that stores the average closing price trends for each stock over time.
+
+Table: stock_prices
+
+| stock_symbol | trade_date  | closing_price |
+|--------------|-------------|---------------|
+| AAPL         | 2023-08-01  | 148.99        |
+| AAPL         | 2023-08-02  | 150.23        |
+| AAPL         | 2023-08-03  | 151.55        |
+| AAPL         | 2023-08-04  | 149.86        |
+| AAPL         | 2023-08-05  | 150.78        |
+| ...          | ...         | ...           |
+
+Create a materialized view named stock_trends_mv that stores the average closing price trends for each stock over time, ordered by stock symbol and trade date.
+
+
+Question 2:
+You're working with a database for a healthcare system. Create a materialized view named DoctorAppointments that displays upcoming appointments for doctors. The view should include the doctor's name, patient's name, appointment date, and appointment status. Refresh the materialized view every hour.
+
+Doctors Table:
+
+| DoctorID | DoctorName    |
+|----------|---------------|
+| 1        | Dr. Smith     |
+| 2        | Dr. Johnson   |
+| 3        | Dr. Lee       |
+
+Patients Table:
+
+| PatientID | PatientName   |
+|-----------|---------------|
+| 101       | Alice         |
+| 102       | Bob           |
+| 103       | Carol         |
+
+Appointments Table:
+
+| AppointmentID | DoctorID | PatientID | AppointmentDate      | Status    |
+|--------------|----------|----------|----------------------|-----------|
+| 1            | 1        | 101      | 2023-08-30 10:00:00 | Scheduled |
+| 2            | 2        | 102      | 2023-08-30 11:00:00 | Completed |
+| 3            | 1        | 103      | 2023-08-30 12:00:00 | Scheduled |
+
+
+Question 3:
+You're managing a database for an online marketplace. Create a materialized view named TopSellingProducts that displays the top 5 bestselling products for each category based on the total number of units sold. The view should include the product name, category name, and the total units sold. Refresh the materialized view every night at midnight.
+
+Products Table:
+
+| ProductID | ProductName    | CategoryID |
+|-----------|----------------|------------|
+| 1         | Product A      | 1          |
+| 2         | Product B      | 2          |
+| 3         | Product C      | 1          |
+| 4         | Product D      | 2          |
+
+Sales Table:
+
+| SaleID | ProductID | QuantitySold | SaleDate    |
+|--------|-----------|--------------|-------------|
+| 1      | 1         | 15           | 2023-08-15  |
+| 2      | 2         | 20           | 2023-08-15  |
+| 3      | 1         | 12           | 2023-08-15  |
+| 4      | 3         | 10           | 2023-08-15  |
+
+Categories Table:
+
+| CategoryID | CategoryName   |
+|------------|----------------|
+| 1          | Electronics    |
+| 2          | Clothing       |
+
+==============================================================================
+				CTE
+==============================================================================
+Question 1:
+You are working for a financial institution and are tasked with analyzing transaction data. The institution has two tables: transactions and accounts.
+
+Table: transactions
+
+| transaction_id | account_id | transaction_date | amount   |
+|----------------|------------|------------------|----------|
+| 1              | 101        | 2023-07-15       | -100.00  |
+| 2              | 102        | 2023-07-15       | 500.00   |
+| 3              | 101        | 2023-08-01       | -50.00   |
+| 4              | 103        | 2023-08-10       | 200.00   |
+
+
+Table: accounts
+
+| account_id | account_holder |
+|------------|----------------|
+| 101        | Alice          |
+| 102        | Bob            |
+| 103        | Carol          |
+
+
+You want to create a report that shows the total balance for each account after each transaction. Write an SQL query using a Common Table Expression (CTE) to achieve this.
+
+Write an SQL query using a CTE to generate a report showing the account holder, transaction date, transaction amount, and total balance after each transaction.
+ 
+ 
+Question 2:
+
+You're working with a database for an e-commerce platform. Three tables are involved: Customers, Orders, and OrderItems. You need to generate a report that lists the top 5 customers with the highest total purchase amount. Additionally, you want to provide details about their individual orders and the items they purchased. Write an SQL query using CTEs to accomplish this task.
+
+Customers Table:
+
+| CustomerID | CustomerName    |
+|------------|-----------------|
+| 1          | Alice           |
+| 2          | Bob             |
+| 3          | Carol           |
+| 4          | David           |
+
+Orders Table:
+
+| OrderID | CustomerID | OrderDate     |
+|---------|------------|---------------|
+| 101     | 1          | 2023-01-10    |
+| 102     | 2          | 2023-02-15    |
+| 103     | 1          | 2023-02-20    |
+| 104     | 3          | 2023-03-05    |
+
+OrderItems Table:
+
+| ItemID | OrderID | ProductName    | Quantity | UnitPrice |
+|--------|---------|----------------|----------|-----------|
+| 1      | 101     | Product A      | 2        | 10.00     |
+| 2      | 101     | Product B      | 3        | 15.00     |
+| 3      | 102     | Product A      | 1        | 10.00     |
+| 4      | 103     | Product C      | 4        | 8.00      |
+| 5      | 103     | Product B      | 2        | 15.00     |
+| 6      | 104     | Product A      | 5        | 10.00     |
+
+
+Question 3:
+
+You're working with a database for a music streaming service. Two tables are involved: Users and PlayHistory. You need to generate a report that lists the top 3 most played songs for each user. Write an SQL query using CTEs to accomplish this task.
+
+Users Table:
+
+| UserID | UserName     |
+|--------|--------------|
+| 1      | Alice        |
+| 2      | Bob          |
+| 3      | Carol        |
+| 4      | David        |
+
+PlayHistory Table:
+
+| PlayID | UserID | SongName         | PlayCount |
+|--------|--------|------------------|-----------|
+| 1      | 1      | Song A           | 5         |
+| 2      | 1      | Song B           | 7         |
+| 3      | 2      | Song C           | 3         |
+| 4      | 2      | Song A           | 8         |
+| 5      | 3      | Song B           | 4         |
+| 6      | 3      | Song D           | 6         |
+| 7      | 4      | Song A           | 2         |
+| 8      | 4      | Song C           | 3         |
+
+
+==============================================================================
+			WINDOW FUNCTIONS
+==============================================================================
+Question 1:
+You are working with a sales database and need to determine the ranking of salespeople based on their total sales amounts. Using window functions, write a query to retrieve the salesperson's name, total sales amount, and their rank.
+
+Table: sales
+
+| salesperson_id | sales_amount | sale_date   |
+|----------------|--------------|-------------|
+| 101            | 1500         | 2023-01-15  |
+| 102            | 2000         | 2023-01-20  |
+| 101            | 1200         | 2023-01-25  |
+| 103            | 1800         | 2023-01-30  |
+| 102            | 2500         | 2023-02-05  |
+
+Write an SQL query to retrieve the salesperson's name, total sales amount, and their rank based on total sales amount.
+
+Question 2:
+
+You are analyzing stock price data and need to calculate the 5-day moving average for each stock. Write a query to retrieve the stock symbol, date, closing price, and the 5-day moving average for each stock.
+
+Table: stock_prices
+| stock_symbol | trade_date  | closing_price |
+|--------------|-------------|---------------|
+| AAPL         | 2023-08-01  | 148.99        |
+| AAPL         | 2023-08-02  | 150.23        |
+| AAPL         | 2023-08-03  | 151.55        |
+| AAPL         | 2023-08-04  | 149.86        |
+| AAPL         | 2023-08-05  | 150.78        |
+| ...          | ...         | ...           |
+
+Write an SQL query to retrieve the stock symbol, date, closing price, and the 5-day moving average for each stock, ordered by stock symbol and trade date.
+
+
+==============================================================================
+			GROUP BY EXTENSIONS
+==============================================================================
+
+Question 1: 
+
+You are working with a sales database and need to generate a summary report that includes total sales amounts by product, region, and month.
+
+Table: sales
+
+| sale_id | product_id | region   | sale_date   | amount   |
+|---------|------------|----------|-------------|----------|
+| 1       | 101        | North    | 2023-01-15  | 500      |
+| 2       | 102        | South    | 2023-01-20  | 300      |
+| 3       | 101        | North    | 2023-02-10  | 800      |
+| 4       | 103        | West     | 2023-02-15  | 200      |
+| 5       | 101        | South    | 2023-03-05  | 600      |
+| ...     | ...        | ...      | ...         | ...      |
+
+
+Write an SQL query using Group By extensions to generate a summary report showing total sales amounts by product, region, and month. Include subtotals for each combination and a grand total.
+
+
+Question 2:
+You're managing a database for an online store. Write a query that retrieves the total revenue for each combination of product category and year, using the ROLLUP extension.
+
+Sales Table:
+
+| SaleID | ProductCategory | SaleDate    | Amount |
+|--------|-----------------|-------------|--------|
+| 1      | Electronics     | 2023-01-10  | 120.00 |
+| 2      | Clothing        | 2023-02-15  | 75.00  |
+| 3      | Electronics     | 2023-03-05  | 200.00 |
+| 4      | Clothing        | 2023-04-20  | 150.00 |
+
+
+Question 3:
+You're working with a database for a car rental company. Write a query that retrieves the total revenue for each combination of car model, rental year, and rental month, using the CUBE and GROUPING SETS extensions.
+
+Rentals Table:
+
+| RentalID | CarModel | RentalDate  | Amount |
+|----------|----------|-------------|--------|
+| 1        | Sedan    | 2023-01-10  | 120.00 |
+| 2        | SUV      | 2023-02-15  | 180.00 |
+| 3        | Sedan    | 2023-03-05  | 150.00 |
+| 4        | SUV      | 2023-04-20  | 200.00 |
+
+
+==============================================================================
+				Merge
+==============================================================================
+
+Question 1:
+
+Books Table:
+
+| BookID | Title            | PublicationYear | AuthorID | Status      |
+|--------|------------------|-----------------|----------|-------------|
+| 1      | Book A           | 2010            | 1        | AVAILABLE   |
+| 2      | Book B           | 2015            | 2        | AVAILABLE   |
+| 3      | Book C           | 2022            | 3        | AVAILABLE   |
+
+Authors Table:
+
+| AuthorID | AuthorName     |
+|----------|----------------|
+| 1        | Author X       |
+| 2        | Author Y       |
+
+
+NewBookUpdates Table:
+
+| BookID | Title            | PublicationYear | AuthorName |
+|--------|------------------|-----------------|------------|
+| 2      | Updated Book B   | 2018            | Author Y   |
+| 3      | Book C           | 2022            | Author Z   |
+| 4      | New Book         | 2023            | Author W   |
+
+You're working with a database for a library. There are three tables: Books, Authors, and NewBookUpdates. You need to ensure that book records in the Books table are up-to-date with the information from the NewBookUpdates table. However, the Authors information needs to be considered as well. If a book already exists in both the Books and NewBookUpdates tables, update its title and publication year. If it doesn't exist in the Books table, insert a new book record, along with its author if they don't exist in the Authors table. If a book exists in the Books table but is missing from the NewBookUpdates table, mark it as archived (set its status to 'ARCHIVED').
+
+
+Question 2:
+
+You are managing a database for a company's inventory. There are two tables: Products and NewProductUpdates. You need to synchronize the product information from the NewProductUpdates table to the Products table. If a product's code already exists in both tables, update its price and stock quantity. If the product code doesn't exist in the Products table, insert a new record. Additionally, if a product exists in the Products table but is not present in the NewProductUpdates table, mark it as discontinued (set its status to 'DISCONTINUED').
+
+Products Table:
+
+| ProductCode | ProductName   | Price | StockQty | Status      |
+|-------------|---------------|-------|----------|-------------|
+| P001        | Widget A      | 10.00 | 100      | AVAILABLE   |
+| P002        | Widget B      | 15.00 | 75       | AVAILABLE   |
+| P003        | Widget C      | 20.00 | 50       | AVAILABLE   |
+
+NewProductUpdates Table:
+
+| ProductCode | Price | StockQty |
+|-------------|-------|----------|
+| P001        | 12.00 | 120      |
+| P003        | 25.00 | 60       |
+| P004        | 8.50  | 200      |
+
+Write a MERGE statement to update/insert data and mark discontinued products:
+
+
+Question 3:
+
+You're working with a database for a sales platform. Three tables are involved: Customers, Orders, and NewOrderUpdates. You need to ensure that the order records in the Orders table are updated with the information from the NewOrderUpdates table. Additionally, you want to track the total sales for each customer by calculating the sum of their orders. If an order already exists in both tables, update its amount and status. If it doesn't exist in the Orders table, insert a new order record. After updating/inserting the order records, update the total sales for each customer in the Customers table.
+
+Customers Table:
+
+
+| CustomerID | CustomerName | TotalSales |
+|------------|--------------|------------|
+| 1          | Customer A   | 0.00       |
+| 2          | Customer B   | 0.00       |
+| 3          | Customer C   | 0.00       |
+Orders Table:
+
+| OrderID | CustomerID | Amount | Status    |
+|---------|------------|--------|-----------|
+| 1       | 1          | 100.00 | COMPLETED |
+| 2       | 2          | 75.00  | COMPLETED |
+| 3       | 3          | 50.00  | COMPLETED |
+
+NewOrderUpdates Table:
+
+| OrderID | CustomerID | Amount | Status    |
+|---------|------------|--------|-----------|
+| 2       | 2          | 90.00  | PENDING   |
+| 3       | 3          | 60.00  | COMPLETED |
+| 4       | 1          | 120.00 | COMPLETED |
+
+Write a CTE and MERGE statement to update/insert data and calculate total sales:
+
+
+==============================================================================
+				REGEX
+==============================================================================
+
+Question 1:
+You are working on a database that stores user information for a web application. The application requires valid email addresses during user registration. However, you need to identify and report any invalid email addresses that have been accidentally entered.
+
+Table: users
+
+| user_id | first_name | last_name | email               |
+|---------|------------|-----------|---------------------|
+| 101     | Alice      | Johnson   | alice@example.com  |
+| 102     | Bob        | Smith     | bob@example.com    |
+| 103     | Carol      | Williams  | carol@example.com  |
+| 104     | David      | Lee       | david@example.com  |
+| 105     | Emma       | Brown     | emma@invalid       |
+
+Write an SQL query using regular expressions to identify and report the records with invalid email addresses.
+
+Question 2:
+
+You are working with a database that stores phone numbers in different formats. You want to retrieve phone numbers in a standardized format.
+
+Table: contacts
+
+| contact_id | first_name | last_name | phone_number   |
+|------------|------------|-----------|----------------|
+| 201        | Alice      | Johnson   | 123-456-7890   |
+| 202        | Bob        | Smith     | (555) 123-4567 |
+| 203        | Carol      | Williams  | 987.654.3210   |
+| 204        | David      | Lee       | 1234567890     |
+| ...        | ...        | ...       | ...            |
+
+Write an SQL query to retrieve contact information with standardized phone numbers (removing non-numeric characters).
+
+
+Question 3:
+You're managing a database for an online store. Create a query that retrieves all product names with a SKU (stock-keeping unit) format of three letters followed by three numbers (e.g., "ABC123").
+
+Products Table:
+
+| ProductID | ProductName | SKU      |
+|-----------|-------------|----------|
+| 1         | Product A   | ABC123   |
+| 2         | Product B   | XYZ456   |
+| 3         | Product C   | DEF789   |
+| 4         | Product D   | 123ABC   |
+
+
+==============================================================================
+					TCL
+==============================================================================
+
+Question 1:
+You are designing a database for an online booking system that allows users to reserve seats for events. There are two main tables: events and bookings.
+
+Table: events
+
+| event_id | event_name    | event_date   | available_seats |
+|----------|---------------|--------------|-----------------|
+| 1        | Concert A     | 2023-09-10   | 200            |
+| 2        | Conference B  | 2023-09-15   | 100            |
+
+Table: bookings
+
+| booking_id | event_id | user_id | num_tickets |
+|------------|----------|---------|-------------|
+| 101        | 1        | 501     | 3           |
+| 102        | 1        | 502     | 2           |
+| 103        | 2        | 503     | 1           |
+
+
+The company has decided to cancel "Concert A" due to unforeseen circumstances. You need to write SQL statements to perform the following tasks using Transaction Control Language (TCL):
+1. Remove the event "Concert A" from the events table.
+2. Refund the booked tickets for "Concert A" by deleting the corresponding rows from the bookings table.
+3. Ensure that both these operations are done as part of a single transaction to maintain data consistency.
+
+
+Question 2:
+You're managing a database for an online banking system. Create a transaction that transfers $500 from Alice's account to Bob's account. Ensure that the transaction is committed only if both accounts have sufficient balance.
+
+Accounts Table:
+
+| AccountID | AccountHolder | Balance |
+|-----------|---------------|---------|
+| 1         | Alice         | 1200.00 |
+| 2         | Bob           | 800.00  |
+
+
+Question 3:
+You're working with a database for an online reservation system. Create a transaction that books a seat for a user in a specific flight. Ensure that the transaction is rolled back if the flight is fully booked.
+
+Flights Table:
+
+| FlightID | FlightNumber | AvailableSeats |
+|----------|--------------|----------------|
+| 1        | FL123        | 100            |
+| 2        | FL456        | 50             |
+
+Reservations Table:
+
+| ReservationID | FlightID | UserID |
+|---------------|----------|--------|
+| 1             | 1        | 101    |
+| 2             | 2        | 102    |
+
+
+==============================================================================
+				DCL
+==============================================================================
+
+Question 1: 
+You are responsible for managing an HR database that contains sensitive employee information. There are two main tables: employees and salary_info.
+
+Table: employees
+
+| employee_id | first_name | last_name | department | hire_date   |
+|-------------|------------|-----------|------------|-------------|
+| 101         | Alice      | Johnson   | HR         | 2020-05-15  |
+| 102         | Bob        | Smith     | Finance    | 2021-02-20  |
+| 103         | Carol      | Williams  | IT         | 2019-11-10  |
+
+
+Table: salary_info
+
+| employee_id | salary     | bonus      |
+|-------------|------------|------------|
+| 101         | 75000      | 5000       |
+| 102         | 90000      | 8000       |
+| 103         | 80000      | 6000       |
+
+
+Due to security policies, you need to restrict access to salary information in the salary_info table. You need to create SQL statements using Data Control Language (DCL) to revoke read access to the salary_info table from a specific role named public_access.
+
+
+Question 2: 
+You are working with a customer database that contains sensitive information. You need to ensure that only authorized users can access certain columns of the table.
+
+Table: customers
+
+| customer_id | first_name | last_name | email             | phone           |
+|-------------|------------|-----------|-------------------|-----------------|
+| 201         | Alice      | Johnson   | alice@example.com | 123-456-7890   |
+| 202         | Bob        | Smith     | bob@example.com   | (555) 123-4567 |
+| 203         | Carol      | Williams  | carol@example.com | 987.654.3210   |
+| 204         | David      | Lee       | david@example.com | 1234567890     |
+| ...         | ...        | ...       | ...               | ...           |
+
+Write SQL statements using Data Control Language to grant SELECT permission on the customer_id, first_name, and last_name columns of the customers table to a role named sales_role.
+
+
+Question 3:
+You're managing a database for an e-commerce platform. Create a user named "order_clerk" with read and insert privileges on the "orders" table, and the ability to execute stored procedures.
+
+
+Question 4:
+You're managing a database for an HR system. Create a user named "hr_user" with the ability to read the "employees" table but only access the "employee_id" and "first_name" columns.
+
+Employees Table:
+
+| employee_id | first_name | last_name | salary |
+|-------------|------------|-----------|--------|
+| 101         | Alice      | Johnson   | 60000  |
+| 102         | Bob        | Smith     | 55000  |
+| 103         | Carol      | Williams  | 62000  |
+| 104         | David      | Jones     | 58000  |
+
+
+Question 5:
+You're working with a database for a customer support system. Create a role named "support_staff" that can read and update the "tickets" table, but can only modify the "status" column.
+
+Tickets Table:
+
+| ticket_id | customer_id | status    | priority |
+|-----------|-------------|-----------|----------|
+| 1         | 101         | Open      | High     |
+| 2         | 102         | In Progress| Medium   |
+| 3         | 103         | Closed    | Low      |
+| 4         | 104         | Open      | High     |
+
+
+Question 6:
+You're managing a database for an e-commerce platform. Create a user named "inventory_user" with the ability to read and update the "products" table, but can only modify the "stock_qty" column.
+
+Products Table:
+
+| product_id | product_name | stock_qty | price   |
+|------------|--------------|-----------|---------|
+| 1          | Product A    | 50        | 100.00  |
+| 2          | Product B    | 30        | 75.00   |
+| 3          | Product C    | 40        | 120.00  |
+| 4          | Product D    | 20        | 150.00  |
+
+
+Question 7:
+
+Write SQL statements to create a new role, SELECT and INSERT privileges on a schema to the role, and then assign this role to multiple users
